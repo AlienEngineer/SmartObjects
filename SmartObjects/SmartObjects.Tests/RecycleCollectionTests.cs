@@ -36,7 +36,7 @@ namespace SmartObjects.Tests
             Subject.Clear();
 
             // Assert
-            Verify<IRecycleBin<object>>(e => e.Recycle(), Times.Once);
+            Verify<IRecycleBin<object>>(e =>e.Recycle(Dependency<ICollection<object>>().Object), Times.Once);
         }
 
         [Test]
@@ -73,6 +73,20 @@ namespace SmartObjects.Tests
 
             // Assert
             Verify<ICollection<object>>(e => e.Remove(obj1), Times.Once);
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void When_removing_list_it_should_store_removed_item_in_recycle_bin()
+        {
+            // Arrange
+            var obj1 = new object();
+
+            // Act
+            var result = Subject.Remove(obj1);
+
+            // Assert
+            Verify<IRecycleBin<object>>(e => e.Recycle(obj1), Times.Once);
             Assert.That(result, Is.EqualTo(false));
         }
 

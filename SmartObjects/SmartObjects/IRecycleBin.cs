@@ -1,7 +1,10 @@
-﻿namespace SmartObjects
+﻿using System.Collections.Generic;
+
+namespace SmartObjects
 {
-    public interface IRecycleBin<T>
+    public interface IRecycleBin<in T>
     {
-        void Recycle();
+        void Recycle(IEnumerable<T> items);
+        void Recycle(T item);
     }
 }

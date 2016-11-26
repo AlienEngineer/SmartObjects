@@ -21,7 +21,7 @@ namespace SmartObjects
 
         public void Clear()
         {
-            _recycleBin.Recycle();
+            _recycleBin.Recycle(_underlyingCollection);
             _underlyingCollection.Clear();
         }
 
@@ -37,6 +37,7 @@ namespace SmartObjects
 
         public bool Remove(T item)
         {
+            _recycleBin.Recycle(item);
             return _underlyingCollection.Remove(item);
         }
 
