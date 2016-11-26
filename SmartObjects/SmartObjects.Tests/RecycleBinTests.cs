@@ -89,5 +89,29 @@ namespace SmartObjects.Tests
             // Assert
             Assert.That(Subject.IsEmpty, Is.True);
         }
+
+        [Test]
+        public void When_making_an_item_instance_when_recycle_is_empty_it_should_return_a_new_instance()
+        {
+            // Act
+            var result = Subject.GetInstance();
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_making_an_item_instance_when_recycle_is_not_empty_it_should_return_a_dirty_instance()
+        {
+            // Arrange
+            var item = new object();
+            Subject.Recycle(item);
+
+            // Act
+            var result = Subject.GetInstance();
+
+            // Assert
+            Assert.That(result, Is.EqualTo(item));
+        }
     }
 }

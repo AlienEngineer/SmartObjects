@@ -6,5 +6,6 @@ namespace SmartObjects
     {
         void Recycle(IEnumerable<T> items);
         void Recycle(T item);
+        void Purge();
     }
 }
