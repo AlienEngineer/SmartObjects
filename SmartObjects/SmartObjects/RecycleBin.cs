@@ -7,6 +7,8 @@ namespace SmartObjects
         private readonly int _maxCapacity;
         readonly Queue<T> _queue;
 
+        public bool IsEmpty => _queue.Count == 0;
+
         public RecycleBin(int maxCapacity)
         {
             _maxCapacity = maxCapacity;
@@ -32,6 +34,11 @@ namespace SmartObjects
         public bool Contains(T item)
         {
             return _queue.Contains(item);
+        }
+
+        public void Purge()
+        {
+            _queue.Clear();
         }
     }
 }

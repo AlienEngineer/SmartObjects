@@ -76,5 +76,18 @@ namespace SmartObjects.Tests
             Assert.That(Subject.Contains(list[0]), Is.False);
             Assert.That(Subject.Contains(list[1]), Is.False);
         }
+
+        [Test]
+        public void When_purging_recycle_bin_it_should_release_all_objects()
+        {
+            // Arrange
+            Subject.Recycle(Enumerable.Repeat(new object(), MAX_CAPACITY));
+
+            // Act
+            Subject.Purge();
+
+            // Assert
+            Assert.That(Subject.IsEmpty, Is.True);
+        }
     }
 }
