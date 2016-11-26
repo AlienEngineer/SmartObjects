@@ -36,7 +36,7 @@ namespace SmartObjects.Tests
             Subject.Clear();
 
             // Assert
-            Verify<IRecycleBin<object>>(e =>e.Recycle(Dependency<ICollection<object>>().Object), Times.Once);
+            Verify<IRecycleBin<object>>(e => e.Recycle(Dependency<ICollection<object>>().Object), Times.Once);
         }
 
         [Test]
